@@ -1,0 +1,11 @@
+# Project data (do NOT upload)
+data/raw/
+data/clean/
+
+# Python junk
+.venv/
+__pycache__/
+
+# VS Code
+.vscode/
+
