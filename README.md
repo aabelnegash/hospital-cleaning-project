@@ -1,4 +1,5 @@
 # hospital-cleaning-project
+![CI](../../actions/workflows/ci.yml/badge.svg)
 
 Data cleaning pipeline for the CMS “Hospital General Information” dataset.
 
