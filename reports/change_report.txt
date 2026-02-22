@@ -1,0 +1,15 @@
+=== CHANGE REPORT ===
+Raw file: C:\VS Code Folders\hospital-cleaning-project\data\raw\raw_hospital_data.csv
+Clean file: C:\VS Code Folders\hospital-cleaning-project\data\processed\hospital_clean.csv
+
+Raw shape: (4812, 28)
+Clean shape: (4812, 20)
+
+Common columns after standardization (20): ['address', 'city', 'county_name', 'effectiveness_of_care_national_comparison', 'efficient_use_of_medical_imaging_national_comparison', 'emergency_services', 'hospital_name', 'hospital_overall_rating', 'hospital_ownership', 'hospital_type', 'meets_criteria_for_meaningful_use_of_ehrs', 'mortality_national_comparison', 'patient_experience_national_comparison', 'phone_number', 'provider_id', 'readmission_national_comparison', 'safety_of_care_national_comparison', 'state', 'timeliness_of_care_national_comparison', 'zip_code']
+Columns dropped (8): ['effectiveness_of_care_national_comparison_footnote', 'efficient_use_of_medical_imaging_national_comparison_footnote', 'hospital_overall_rating_footnote', 'mortality_national_comparison_footnote', 'patient_experience_national_comparison_footnote', 'readmission_national_comparison_footnote', 'safety_of_care_national_comparison_footnote', 'timeliness_of_care_national_comparison_footnote']
+Columns added (0): []
+
+Missing counts (raw key fields):
+{'Provider ID': 0, 'ZIP Code': 0, 'Phone Number': 0, 'State': 0}
+Missing counts (clean key fields):
+{'provider_id': 0, 'zip_code': 0, 'phone_number': 0, 'state': 0}
