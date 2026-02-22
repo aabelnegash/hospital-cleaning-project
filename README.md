@@ -11,6 +11,7 @@ Data cleaning pipeline for the CMS “Hospital General Information” dataset.
 
 ## Data
 - Source: CMS “Hospital General Information” dataset
+- Dataset Link: https://www.kaggle.com/datasets/cms/hospital-general-information
 - Raw file location (not tracked in Git): `data/raw/raw_hospital_data.csv`
 
 ## Project structure
