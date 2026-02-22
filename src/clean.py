@@ -53,6 +53,25 @@ def main():
     )
 
     df = standardize_columns(df)
+        # normalize whitespace in common text fields (safe: no case changes)
+    TEXT_COLS = [
+    "hospital_name",
+    "address",
+    "city",
+    "county_name",
+    "hospital_type",
+    "hospital_ownership",
+]
+
+    for c in TEXT_COLS:
+        if c in df.columns:
+            df[c] = (
+                df[c].astype("string")
+                .str.strip()
+                .str.replace(r"\s+", " ", regex=True)
+            )
+
+
 
     if "state" in df.columns:
         df["state"] = clean_state(df["state"])
@@ -60,6 +79,8 @@ def main():
         df["zip_code"] = clean_zip(df["zip_code"])
     if "phone_number" in df.columns:
         df["phone_number"] = clean_phone(df["phone_number"])
+
+    
 
     df = drop_footnote_cols(df)
 
