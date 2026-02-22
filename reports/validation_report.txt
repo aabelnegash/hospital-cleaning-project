@@ -1,0 +1,8 @@
+=== VALIDATION REPORT ===
+File: C:\VS Code Folders\hospital-cleaning-project\data\processed\hospital_clean.csv
+Rows, Cols: (4812, 20)
+Duplicate rows: 0
+Duplicate provider_id: 0
+bad_zip_count: 0
+bad_phone_count: 0
+bad_state_count: 0
