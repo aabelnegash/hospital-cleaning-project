@@ -28,3 +28,11 @@ python -m venv .venv
 ```bash
 .\.venv\Scripts\python.exe src/01_load_and_profile.py
 ```
+## Run cleaning
+```bash
+.\.venv\Scripts\python.exe src/02_clean.py
+```
+## Run validation
+```bash
+.\.venv\Scripts\python.exe src/03_validate.py
+```
