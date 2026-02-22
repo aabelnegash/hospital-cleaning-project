@@ -1,0 +1,62 @@
+=== BASIC PROFILE ===
+Rows, Cols: (4812, 28)
+
+Columns:
+['Provider ID', 'Hospital Name', 'Address', 'City', 'State', 'ZIP Code', 'County Name', 'Phone Number', 'Hospital Type', 'Hospital Ownership', 'Emergency Services', 'Meets criteria for meaningful use of EHRs', 'Hospital overall rating', 'Hospital overall rating footnote', 'Mortality national comparison', 'Mortality national comparison footnote', 'Safety of care national comparison', 'Safety of care national comparison footnote', 'Readmission national comparison', 'Readmission national comparison footnote', 'Patient experience national comparison', 'Patient experience national comparison footnote', 'Effectiveness of care national comparison', 'Effectiveness of care national comparison footnote', 'Timeliness of care national comparison', 'Timeliness of care national comparison footnote', 'Efficient use of medical imaging national comparison', 'Efficient use of medical imaging national comparison footnote']
+
+Dtypes:
+Provider ID                                                       string
+Hospital Name                                                        str
+Address                                                              str
+City                                                                 str
+State                                                             string
+ZIP Code                                                          string
+County Name                                                          str
+Phone Number                                                      string
+Hospital Type                                                        str
+Hospital Ownership                                                   str
+Emergency Services                                                   str
+Meets criteria for meaningful use of EHRs                            str
+Hospital overall rating                                          float64
+Hospital overall rating footnote                                     str
+Mortality national comparison                                        str
+Mortality national comparison footnote                               str
+Safety of care national comparison                                   str
+Safety of care national comparison footnote                          str
+Readmission national comparison                                      str
+Readmission national comparison footnote                             str
+Patient experience national comparison                               str
+Patient experience national comparison footnote                      str
+Effectiveness of care national comparison                            str
+Effectiveness of care national comparison footnote                   str
+Timeliness of care national comparison                               str
+Timeliness of care national comparison footnote                      str
+Efficient use of medical imaging national comparison                 str
+Efficient use of medical imaging national comparison footnote        str
+dtype: object
+
+Missing values (top 20):
+Readmission national comparison footnote                         3795
+Effectiveness of care national comparison footnote               3610
+Timeliness of care national comparison footnote                  3546
+Mortality national comparison footnote                           3460
+Patient experience national comparison footnote                  3443
+Hospital overall rating footnote                                 3414
+Efficient use of medical imaging national comparison footnote    2779
+Safety of care national comparison footnote                      2644
+Safety of care national comparison                               2168
+Efficient use of medical imaging national comparison             2033
+Patient experience national comparison                           1369
+Mortality national comparison                                    1352
+Timeliness of care national comparison                           1266
+Hospital overall rating                                          1245
+Effectiveness of care national comparison                        1202
+Readmission national comparison                                  1017
+Meets criteria for meaningful use of EHRs                         144
+County Name                                                        15
+Emergency Services                                                  0
+Hospital Ownership                                                  0
+dtype: int64
+
+Duplicate rows: 0
+Duplicate Provider ID: 0
