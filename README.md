@@ -51,6 +51,8 @@ python -m venv .venv
 ```bash
 .\.venv\Scripts\python.exe -m src.validate
 ```
+**CI runs validation against data/sample/hospital_clean_sample.csv (CLEAN_PATH env var).**
+
 ## Run change report
 ```bash
 .\.venv\Scripts\python.exe -m src.report_changes
@@ -58,3 +60,4 @@ python -m venv .venv
 **Notes**
 - Raw data is intentionally not committed to GitHub.
 - Processed outputs are generated locally in data/processed/.
+- Validation exits with a non-zero code if checks fail (pipeline will stop).
