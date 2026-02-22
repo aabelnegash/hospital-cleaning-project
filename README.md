@@ -32,6 +32,12 @@ python -m venv .venv
 ```bash
 .\.venv\Scripts\python.exe src/02_clean.py
 ```
+Output schema (clean file)
+
+The cleaned dataset schema is enforced to stay consistent across runs.
+
+See src/config.py (KEEP_COLUMNS) for the exact output columns and order.
+
 ## Run validation
 ```bash
 .\.venv\Scripts\python.exe src/03_validate.py
