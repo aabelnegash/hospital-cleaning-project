@@ -1,8 +1,26 @@
-=== VALIDATION REPORT ===
+=== VALIDATION REPORT (Phase 3) ===
 File: C:\VS Code Folders\hospital-cleaning-project\data\processed\hospital_clean.csv
 Rows, Cols: (4812, 20)
-Duplicate rows: 0
-Duplicate provider_id: 0
-bad_zip_count: 0
-bad_phone_count: 0
-bad_state_count: 0
+
+OK: provider_id has 0 missing values
+OK: provider_id is unique (0 duplicates)
+OK: provider_id format is 6 digits
+
+OK: zip_code format valid (0 bad)
+OK: phone_number format valid (0 bad)
+OK: state format valid (0 bad)
+
+OK: hospital_overall_rating values are 1–5 or null
+
+OK: emergency_services values are Yes/No or null
+
+OK: Found 7 *_national_comparison columns
+OK: mortality_national_comparison: allowed categories only
+OK: safety_of_care_national_comparison: allowed categories only
+OK: readmission_national_comparison: allowed categories only
+OK: patient_experience_national_comparison: allowed categories only
+OK: effectiveness_of_care_national_comparison: allowed categories only
+OK: timeliness_of_care_national_comparison: allowed categories only
+OK: efficient_use_of_medical_imaging_national_comparison: allowed categories only
+
+TOTAL FAILURES: 0
