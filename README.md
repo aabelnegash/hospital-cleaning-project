@@ -14,7 +14,7 @@ Data cleaning pipeline for the CMS “Hospital General Information” dataset.
 
 ## Project structure
 - `src/`
-  - `01_load_and_profile.py` — loads raw data and writes a profiling summary to `reports/`
+  - `load_and_profile.py` — loads raw data and writes a profiling summary to `reports/`
 - `reports/`
   - `profile_summary.txt` — profiling output (rows/cols, dtypes, missing values, duplicates)
 
@@ -26,17 +26,15 @@ python -m venv .venv
 
 ## Run profiling
 ```bash
-.\.venv\Scripts\python.exe src/01_load_and_profile.py
+.\.venv\Scripts\python.exe src/load_and_profile.py
 ```
 ## Run cleaning
 ```bash
-.\.venv\Scripts\python.exe src/02_clean.py
+.\.venv\Scripts\python.exe src/clean.py
 ```
-Output schema (clean file)
-
-The cleaned dataset schema is enforced to stay consistent across runs.
-
-See src/config.py (KEEP_COLUMNS) for the exact output columns and order.
+**Output schema (clean file)**
+- The cleaned dataset schema is enforced to stay consistent across runs.
+- See `src/config.py` (`KEEP_COLUMNS`) for the exact output columns and order.
 
 ## Run validation
 ```bash
