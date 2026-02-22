@@ -1,10 +1,12 @@
-# Project data (do NOT upload)
+# Data (don’t commit)
 data/raw/
-data/clean/
+data/interim/
+data/processed/
 
 # Python junk
 .venv/
 __pycache__/
+.ipynb_checkpoints/
 
 # VS Code
 .vscode/
