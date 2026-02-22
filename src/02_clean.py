@@ -1,3 +1,4 @@
+from src.config import KEEP_COLUMNS
 import pandas as pd
 from pathlib import Path
 
@@ -61,6 +62,9 @@ def main():
         df["phone_number"] = clean_phone(df["phone_number"])
 
     df = drop_footnote_cols(df)
+
+    # schema lock (enforce exact output columns + order)
+    df = df[KEEP_COLUMNS]
 
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(OUT_PATH, index=False)
