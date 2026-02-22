@@ -1,9 +1,10 @@
+import os
 import sys
 import pandas as pd
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-CLEAN_PATH = ROOT / "data" / "processed" / "hospital_clean.csv"
+CLEAN_PATH = Path(os.getenv("CLEAN_PATH", str(ROOT / "data" / "processed" / "hospital_clean.csv")))
 REPORT_PATH = ROOT / "reports" / "validation_report.txt"
 
 # Treat these as missing when reading the cleaned file (belt + suspenders)
