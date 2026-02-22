@@ -1,12 +1,12 @@
 # hospital-cleaning-project
 
-Data cleaning pipeline for the CMS Hospital General Information dataset.
+Data cleaning pipeline for the CMS “Hospital General Information” dataset.
 
 ## Goal
 - Load raw hospital data
-- Profile missingness, types, and duplicates
-- Clean key fields (IDs, ZIP, phone, state)
-- Produce a processed dataset for analysis
+- Profile missingness, data types, and duplicates
+- Clean key fields (Provider ID, ZIP Code, Phone Number, State)
+- Output a processed dataset for analysis
 
 ## Data
 - Source: CMS “Hospital General Information” dataset
@@ -18,12 +18,12 @@ Data cleaning pipeline for the CMS Hospital General Information dataset.
 - `reports/`
   - `profile_summary.txt` — profiling output (rows/cols, dtypes, missing values, duplicates)
 
-## Setup
+## Setup (Windows)
 ```bash
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 
-```md
+
 ## Run profiling
 ```bash
 .\.venv\Scripts\python.exe src/01_load_and_profile.py
