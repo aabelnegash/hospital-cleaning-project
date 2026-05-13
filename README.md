@@ -4,15 +4,19 @@
 Data cleaning pipeline for the CMS “Hospital General Information” dataset.
 
 ## Goal
-- Load raw hospital data
-- Profile missingness, data types, and duplicates
-- Clean key fields (Provider ID, ZIP Code, Phone Number, State)
-- Output a processed dataset for analysis
+- Build a reproducible data cleaning pipeline for CMS hospital data
+- Profile the raw dataset for missing values, duplicate records, and data types
+- Standardize column names and selected fields for analysis
+- Validate key healthcare fields such as Provider ID, ZIP Code, Phone Number, State, and ratings
+- Remove low-value footnote columns from the analysis-ready dataset
+- Prepare the cleaned data for future SQL analysis and dashboarding
 
 ## Data
 - Source: CMS “Hospital General Information” dataset
 - Dataset Link: https://www.kaggle.com/datasets/cms/hospital-general-information
 - Raw file location (not tracked in Git): `data/raw/raw_hospital_data.csv`
+
+
 
 ## Project structure
 - `src/`
