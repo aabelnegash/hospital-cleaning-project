@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6f5f1">
+<meta name="description" content="Data cleaning pipeline for the CMS “Hospital General Information” dataset.">
+<title>Hospital Data Cleaning — aabelnegash</title>
+<link rel="stylesheet" href="portfolio.css">
+<script src="portfolio.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#goal">Skip to content</a>
+<header class="site-header" id="top">
+<a class="wordmark" href="https://github.com/aabelnegash">aabelnegash<span aria-hidden="true">.</span></a>
+<nav aria-label="Main navigation"><a href="#goal">Goal</a><a href="#data">Data</a><a href="#project-structure">Project structure</a><a href="#reports">Reports</a><a class="github-link" href="https://github.com/aabelnegash/hospital-cleaning-project">GitHub <span aria-hidden="true">↗</span></a></nav>
+</header>
+<main>
+<div class="hero">
+<div class="hero-copy">
+<a class="repository-name" href="https://github.com/aabelnegash/hospital-cleaning-project">hospital-cleaning-project <span aria-hidden="true">↗</span></a>
+<h1>Hospital<br> Data Cleaning</h1>
+<p class="hero-description">Data cleaning pipeline for the CMS “Hospital General Information” dataset.</p>
+<a class="ci-badge" href="https://github.com/aabelnegash/hospital-cleaning-project/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/aabelnegash/hospital-cleaning-project/actions/workflows/ci.yml/badge.svg" width="99" height="20"></a>
+</div>
+<a class="hero-report" href="#reports" aria-label="change_report.txt">
+<div class="terminal-top"><span>change_report.txt</span><span aria-hidden="true">↗</span></div>
+<div class="terminal-body"><p class="terminal-heading">=== CHANGE REPORT ===</p><div class="shape-line"><span>Raw shape:</span><span>(4812, 28)</span></div><div class="shape-line shape-clean"><span>Clean shape:</span><span>(4812, 20)</span></div><p class="terminal-last">Columns added (0): []</p></div>
+</a>
+</div>
+<div class="project-body">
+<aside class="contents"><nav aria-label="Contents"><span class="contents-label">Contents</span><a href="#goal">Goal</a><a href="#data">Data</a><a href="#project-structure">Project structure</a><a href="#reports">Reports</a><a href="#setup">Setup (Windows)</a><a href="#run-full-pipeline">Run full pipeline</a><a href="#run-profiling">Run profiling</a><a href="#run-cleaning">Run cleaning</a><a href="#run-validation">Run validation</a><a href="#run-change-report">Run change report</a><a href="#source-files">Source files</a></nav></aside>
+<div class="project-content">
+<section class="content-section " id="goal" aria-labelledby="goal-heading"><h2 id="goal-heading">Goal</h2><ul>
+<li>Build a reproducible data cleaning pipeline for CMS hospital data
+</li>
+<li>Profile the raw dataset for missing values, duplicate records, and data types
+</li>
+<li>Standardize column names and selected fields for analysis
+</li>
+<li>Validate key healthcare fields such as Provider ID, ZIP Code, Phone Number, State, and ratings
+</li>
+<li>Remove low-value footnote columns from the analysis-ready dataset
+</li>
+<li>Prepare the cleaned data for future SQL analysis and dashboarding
+</li></ul></section><section class="content-section " id="data" aria-labelledby="data-heading"><h2 id="data-heading">Data</h2><ul>
+<li>Source: CMS “Hospital General Information” dataset
+</li>
+<li>Dataset Link: <a href="https://www.kaggle.com/datasets/cms/hospital-general-information">https://www.kaggle.com/datasets/cms/hospital-general-information</a>
+</li>
+<li>Raw file location (not tracked in Git): <code>data/raw/raw_hospital_data.csv</code>
+</li></ul></section><section class="content-section structure-section" id="project-structure" aria-labelledby="project-structure-heading"><h2 id="project-structure-heading">Project structure</h2><ul>
+<li><code>src/</code>
+<ul>
+<li><code>load_and_profile.py</code> — loads raw data and writes a profiling summary to <code>reports/</code></li>
+<li><code>clean.py</code> — cleans data and writes the cleaned output locally</li>
+<li><code>validate.py</code> — runs data quality checks and writes a validation report</li>
+<li><code>report_changes.py</code> — compares raw vs clean and writes a change report</li>
+<li><code>run_pipeline.py</code> — runs the full pipeline end-to-end</li>
+<li><code>config.py</code> — defines the enforced output schema (<code>KEEP_COLUMNS</code>)</li>
+<li><code>__init__.py</code> — marks <code>src</code> as a package</li>
+</ul>
+</li>
+<li><code>reports/</code>
+<ul>
+<li><code>profile_summary.txt</code> — profiling output (rows/cols, dtypes, missing values, duplicates)</li>
+<li><code>validation_report.txt</code> — validation results</li>
+<li><code>change_report.txt</code> — what changed from raw → clean</li>
+</ul>
+</li></ul></section>
+<section class="content-section reports-section" id="reports" aria-labelledby="reports-heading"><h2 id="reports-heading">Reports</h2><div class="reports"><details class="report"><summary><span class="report-name">profile_summary.txt</span><span class="report-toggle" aria-hidden="true">+</span></summary><div class="report-content"><a class="text-link" href="reports/profile_summary.txt">profile_summary.txt <span aria-hidden="true">↗</span></a><pre><code>=== BASIC PROFILE ===
+Rows, Cols: (4812, 28)
+
+Columns:
+[&#x27;Provider ID&#x27;, &#x27;Hospital Name&#x27;, &#x27;Address&#x27;, &#x27;City&#x27;, &#x27;State&#x27;, &#x27;ZIP Code&#x27;, &#x27;County Name&#x27;, &#x27;Phone Number&#x27;, &#x27;Hospital Type&#x27;, &#x27;Hospital Ownership&#x27;, &#x27;Emergency Services&#x27;, &#x27;Meets criteria for meaningful use of EHRs&#x27;, &#x27;Hospital overall rating&#x27;, &#x27;Hospital overall rating footnote&#x27;, &#x27;Mortality national comparison&#x27;, &#x27;Mortality national comparison footnote&#x27;, &#x27;Safety of care national comparison&#x27;, &#x27;Safety of care national comparison footnote&#x27;, &#x27;Readmission national comparison&#x27;, &#x27;Readmission national comparison footnote&#x27;, &#x27;Patient experience national comparison&#x27;, &#x27;Patient experience national comparison footnote&#x27;, &#x27;Effectiveness of care national comparison&#x27;, &#x27;Effectiveness of care national comparison footnote&#x27;, &#x27;Timeliness of care national comparison&#x27;, &#x27;Timeliness of care national comparison footnote&#x27;, &#x27;Efficient use of medical imaging national comparison&#x27;, &#x27;Efficient use of medical imaging national comparison footnote&#x27;]
+
+Dtypes:
+Provider ID                                                       string
+Hospital Name                                                        str
+Address                                                              str
+City                                                                 str
+State                                                             string
+ZIP Code                                                          string
+County Name                                                          str
+Phone Number                                                      string
+Hospital Type                                                        str
+Hospital Ownership                                                   str
+Emergency Services                                                   str
+Meets criteria for meaningful use of EHRs                            str
+Hospital overall rating                                          float64
+Hospital overall rating footnote                                     str
+Mortality national comparison                                        str
+Mortality national comparison footnote                               str
+Safety of care national comparison                                   str
+Safety of care national comparison footnote                          str
+Readmission national comparison                                      str
+Readmission national comparison footnote                             str
+Patient experience national comparison                               str
+Patient experience national comparison footnote                      str
+Effectiveness of care national comparison                            str
+Effectiveness of care national comparison footnote                   str
+Timeliness of care national comparison                               str
+Timeliness of care national comparison footnote                      str
+Efficient use of medical imaging national comparison                 str
+Efficient use of medical imaging national comparison footnote        str
+dtype: object
+
+Missing values (top 20):
+Readmission national comparison footnote                         3795
+Effectiveness of care national comparison footnote               3610
+Timeliness of care national comparison footnote                  3546
+Mortality national comparison footnote                           3460
+Patient experience national comparison footnote                  3443
+Hospital overall rating footnote                                 3414
+Efficient use of medical imaging national comparison footnote    2779
+Safety of care national comparison footnote                      2644
+Safety of care national comparison                               2168
+Efficient use of medical imaging national comparison             2033
+Patient experience national comparison                           1369
+Mortality national comparison                                    1352
+Timeliness of care national comparison                           1266
+Hospital overall rating                                          1245
+Effectiveness of care national comparison                        1202
+Readmission national comparison                                  1017
+Meets criteria for meaningful use of EHRs                         144
+County Name                                                        15
+Emergency Services                                                  0
+Hospital Ownership                                                  0
+dtype: int64
+
+Duplicate rows: 0
+Duplicate Provider ID: 0</code></pre></div></details><details class="report"><summary><span class="report-name">validation_report.txt</span><span class="report-toggle" aria-hidden="true">+</span></summary><div class="report-content"><a class="text-link" href="reports/validation_report.txt">validation_report.txt <span aria-hidden="true">↗</span></a><pre><code>=== VALIDATION REPORT (Phase 3) ===
+File: C:\VS Code Folders\hospital-cleaning-project\data\processed\hospital_clean.csv
+Rows, Cols: (4812, 20)
+
+OK: provider_id has 0 missing values
+OK: provider_id is unique (0 duplicates)
+OK: provider_id format is 6 digits
+
+OK: zip_code format valid (0 bad)
+OK: phone_number format valid (0 bad)
+OK: state format valid (0 bad)
+
+OK: hospital_overall_rating values are 1–5 or null
+
+OK: emergency_services values are Yes/No or null
+
+OK: Found 7 *_national_comparison columns
+OK: mortality_national_comparison: allowed categories only
+OK: safety_of_care_national_comparison: allowed categories only
+OK: readmission_national_comparison: allowed categories only
+OK: patient_experience_national_comparison: allowed categories only
+OK: effectiveness_of_care_national_comparison: allowed categories only
+OK: timeliness_of_care_national_comparison: allowed categories only
+OK: efficient_use_of_medical_imaging_national_comparison: allowed categories only
+
+TOTAL FAILURES: 0</code></pre></div></details><details class="report"><summary><span class="report-name">change_report.txt</span><span class="report-toggle" aria-hidden="true">+</span></summary><div class="report-content"><a class="text-link" href="reports/change_report.txt">change_report.txt <span aria-hidden="true">↗</span></a><pre><code>=== CHANGE REPORT ===
+Raw file: C:\VS Code Folders\hospital-cleaning-project\data\raw\raw_hospital_data.csv
+Clean file: C:\VS Code Folders\hospital-cleaning-project\data\processed\hospital_clean.csv
+
+Raw shape: (4812, 28)
+Clean shape: (4812, 20)
+
+Common columns after standardization (20): [&#x27;address&#x27;, &#x27;city&#x27;, &#x27;county_name&#x27;, &#x27;effectiveness_of_care_national_comparison&#x27;, &#x27;efficient_use_of_medical_imaging_national_comparison&#x27;, &#x27;emergency_services&#x27;, &#x27;hospital_name&#x27;, &#x27;hospital_overall_rating&#x27;, &#x27;hospital_ownership&#x27;, &#x27;hospital_type&#x27;, &#x27;meets_criteria_for_meaningful_use_of_ehrs&#x27;, &#x27;mortality_national_comparison&#x27;, &#x27;patient_experience_national_comparison&#x27;, &#x27;phone_number&#x27;, &#x27;provider_id&#x27;, &#x27;readmission_national_comparison&#x27;, &#x27;safety_of_care_national_comparison&#x27;, &#x27;state&#x27;, &#x27;timeliness_of_care_national_comparison&#x27;, &#x27;zip_code&#x27;]
+Columns dropped (8): [&#x27;effectiveness_of_care_national_comparison_footnote&#x27;, &#x27;efficient_use_of_medical_imaging_national_comparison_footnote&#x27;, &#x27;hospital_overall_rating_footnote&#x27;, &#x27;mortality_national_comparison_footnote&#x27;, &#x27;patient_experience_national_comparison_footnote&#x27;, &#x27;readmission_national_comparison_footnote&#x27;, &#x27;safety_of_care_national_comparison_footnote&#x27;, &#x27;timeliness_of_care_national_comparison_footnote&#x27;]
+Columns added (0): []
+
+Missing counts (raw key fields):
+{&#x27;Provider ID&#x27;: 0, &#x27;ZIP Code&#x27;: 0, &#x27;Phone Number&#x27;: 0, &#x27;State&#x27;: 0}
+Missing counts (clean key fields):
+{&#x27;provider_id&#x27;: 0, &#x27;zip_code&#x27;: 0, &#x27;phone_number&#x27;: 0, &#x27;state&#x27;: 0}</code></pre></div></details></div></section>
+<section class="content-section " id="setup" aria-labelledby="setup-heading"><h2 id="setup-heading">Setup (Windows)</h2><pre class="command"><code>python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt</code></pre></section><section class="content-section " id="run-full-pipeline" aria-labelledby="run-full-pipeline-heading"><h2 id="run-full-pipeline-heading">Run full pipeline</h2><pre class="command"><code>.\.venv\Scripts\python.exe -m src.run_pipeline</code></pre></section><section class="content-section " id="run-profiling" aria-labelledby="run-profiling-heading"><h2 id="run-profiling-heading">Run profiling</h2><pre class="command"><code>.\.venv\Scripts\python.exe -m src.load_and_profile</code></pre></section><section class="content-section " id="run-cleaning" aria-labelledby="run-cleaning-heading"><h2 id="run-cleaning-heading">Run cleaning</h2><pre class="command"><code>.\.venv\Scripts\python.exe -m src.clean</code></pre>
+<p><strong>Output schema (clean file)</strong></p>
+<ul>
+<li>The cleaned dataset schema is enforced to stay consistent across runs.
+</li>
+<li>See <code>src/config.py</code> (<code>KEEP_COLUMNS</code>) for the exact output columns and order.
+</li></ul></section><section class="content-section " id="run-validation" aria-labelledby="run-validation-heading"><h2 id="run-validation-heading">Run validation</h2><pre class="command"><code>.\.venv\Scripts\python.exe -m src.validate</code></pre>
+<p><strong>CI runs validation against data/sample/hospital_clean_sample.csv (CLEAN_PATH env var).</strong></p></section><section class="content-section " id="run-change-report" aria-labelledby="run-change-report-heading"><h2 id="run-change-report-heading">Run change report</h2><pre class="command"><code>.\.venv\Scripts\python.exe -m src.report_changes</code></pre>
+<p><strong>Notes</strong></p>
+<ul>
+<li>Raw data is intentionally not committed to GitHub.
+</li>
+<li>Processed outputs are generated locally in data/processed/.
+</li>
+<li>Validation exits with a non-zero code if checks fail (pipeline will stop).
+</li></ul></section>
+<section class="content-section source-section" id="source-files" aria-labelledby="source-files-heading"><h2 id="source-files-heading">Source files</h2><ul class="file-list"><li><a href="https://github.com/aabelnegash/hospital-cleaning-project/blob/main/.github/workflows/ci.yml"><span>.github/workflows/ci.yml</span><span aria-hidden="true">↗</span></a></li><li><a href="https://github.com/aabelnegash/hospital-cleaning-project/blob/main/.gitignore"><span>.gitignore</span><span aria-hidden="true">↗</span></a></li><li><a href="README.md"><span>README.md</span><span aria-hidden="true">↗</span></a></li><li><a href="data/sample/hospital_clean_sample.csv"><span>data/sample/hospital_clean_sample.csv</span><span aria-hidden="true">↗</span></a></li><li><a href="reports/change_report.txt"><span>reports/change_report.txt</span><span aria-hidden="true">↗</span></a></li><li><a href="reports/profile_summary.txt"><span>reports/profile_summary.txt</span><span aria-hidden="true">↗</span></a></li><li><a href="reports/validation_report.txt"><span>reports/validation_report.txt</span><span aria-hidden="true">↗</span></a></li><li><a href="requirements.txt"><span>requirements.txt</span><span aria-hidden="true">↗</span></a></li><li><a href="src/__init__.py"><span>src/__init__.py</span><span aria-hidden="true">↗</span></a></li><li><a href="src/clean.py"><span>src/clean.py</span><span aria-hidden="true">↗</span></a></li><li><a href="src/config.py"><span>src/config.py</span><span aria-hidden="true">↗</span></a></li><li><a href="src/load_and_profile.py"><span>src/load_and_profile.py</span><span aria-hidden="true">↗</span></a></li><li><a href="src/report_changes.py"><span>src/report_changes.py</span><span aria-hidden="true">↗</span></a></li><li><a href="src/run_pipeline.py"><span>src/run_pipeline.py</span><span aria-hidden="true">↗</span></a></li><li><a href="src/validate.py"><span>src/validate.py</span><span aria-hidden="true">↗</span></a></li></ul></section>
+</div>
+</div>
+</main>
+<footer class="site-footer"><a class="wordmark" href="https://github.com/aabelnegash">aabelnegash<span aria-hidden="true">.</span></a><div><a href="README.md">README.md <span aria-hidden="true">↗</span></a><a href="https://github.com/aabelnegash/hospital-cleaning-project">GitHub <span aria-hidden="true">↗</span></a><a href="#top">Back to top <span aria-hidden="true">↑</span></a></div></footer>
+</body>
+</html>
