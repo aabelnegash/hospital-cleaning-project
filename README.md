@@ -9,7 +9,7 @@ Data cleaning pipeline for the CMS “Hospital General Information” dataset.
 - Standardize column names and selected fields for analysis
 - Validate key healthcare fields such as Provider ID, ZIP Code, Phone Number, State, and ratings
 - Remove low-value footnote columns from the analysis-ready dataset
-- Prepare the cleaned data for future SQL analysis and dashboarding
+- Prepare the cleaned data for SQL analysis and dashboarding
 
 ## Data
 - Source: CMS “Hospital General Information” dataset

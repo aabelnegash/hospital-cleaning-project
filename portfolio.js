@@ -1,6 +1,6 @@
 (() => {
   const links = [...document.querySelectorAll('.contents a')];
-  const sections = [...document.querySelectorAll('.content-section')];
+  const sections = [...document.querySelectorAll('.content-section, .repository')];
   if (!('IntersectionObserver' in window)) return;
   const observer = new IntersectionObserver((entries) => {
     const visible = entries.filter(entry => entry.isIntersecting);
